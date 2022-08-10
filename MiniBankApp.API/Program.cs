@@ -14,8 +14,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IConvert<AccountInformation>, JsonConverterService<AccountInformation>>();
-builder.Services.AddSingleton<IFileService, FileService>();
+builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IDateTimeConvert, DateTimeConvertService>();
 
 var app = builder.Build();
 

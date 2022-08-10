@@ -10,9 +10,4 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Helpers\Base" />
-      <Folder Include="Services\Base" />
-    </ItemGroup>
-
 </Project>
