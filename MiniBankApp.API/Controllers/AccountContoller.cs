@@ -5,31 +5,57 @@ using MiniBankApp.API.Services.Base;
 namespace MiniBankApp.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/account")]
 public class AccountContoller : Controller
 {
     private readonly IAccountService _accountService;
-    // GET
     public AccountContoller(IAccountService accountService)
     {
         _accountService = accountService;
     }
-    
-    [HttpGet("/GetAccountInformation")]
-    public AccountInformation GetAccountInformation()
-    {
-        return _accountService.GetAccountInformation();
-    }
 
-    // [HttpGet]
-    // public void GetMonthlyIncome(string fromDate, string toDate)
-    // {
-    //     _accountService.GetMonthlyIncome();
-    // }
-    //
-    // [HttpGet]
-    // public void GetMontylyOutcome(string fromDate, string toDate)
-    // {
-    //     _accountService.GetMonthlyOutcome();
-    // }
+    [HttpGet]
+    public IActionResult GetAccountInformation()
+    {
+        try
+        {
+            var accInfo = _accountService.GetAccountInformation();
+            if (accInfo == null)
+            {
+                return NotFound();
+            }
+            return Ok(accInfo);
+        }
+        catch (Exception e)
+        {
+            return BadRequest();
+        }
+    }
+    
+    [HttpGet("/GetAccountReportyByDate")]
+    public IActionResult GetAccountReportByDate(string fromDate, string toDate)
+    {
+        try
+        {
+            var statements = _accountService.GetStatementsByDate(fromDate, toDate);
+            
+            if (statements.Any() == false)
+            {
+                return NotFound();
+            }
+
+            var accBalance = _accountService.GetAccountReport(statements);
+            
+            if (accBalance == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(accBalance);
+        }
+        catch (Exception e)
+        {
+            return BadRequest();
+        }
+    }
 }
