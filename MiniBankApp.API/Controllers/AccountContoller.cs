@@ -14,7 +14,7 @@ public class AccountContoller : Controller
         _accountService = accountService;
     }
 
-    [HttpGet]
+    [HttpGet("GetAccountInformation")]
     public IActionResult GetAccountInformation()
     {
         try
