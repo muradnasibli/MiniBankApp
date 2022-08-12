@@ -9,7 +9,14 @@ public class DateTimeConvertService : IDateTimeConvert
     
     public DateTime GetDateTime(string dateTime)
     {
-        CultureInfo cultureInfo = new CultureInfo(cultureInfoStr);
-        return Convert.ToDateTime(dateTime, cultureInfo);
+        try
+        {
+            CultureInfo cultureInfo = new CultureInfo(cultureInfoStr);
+            return Convert.ToDateTime(dateTime, cultureInfo);
+        }
+        catch (Exception ex)
+        {
+            throw new FormatException();
+        }
     }
 }
