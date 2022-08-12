@@ -26,7 +26,7 @@ public class FileService : IFileService
                       "\"description\":\"\",\"amount\":55,\"income\":false},{\"transactionDate\":\"22-07-2022 10:26:45\",\"description\":\"\",\"amount\":505,\"income\":true},{\"transactionDate\":" +
                       "\"25-07-2022 10:26:45\",\"description\":\"\",\"amount\":213.64,\"income\":true},{\"transactionDate\":\"29-07-2022 10:26:45\",\"description\":\"\",\"amount\":32.53,\"income\":false}," +
                       "{\"transactionDate\":\"30-07-2022 10:26:45\",\"description\":\"\",\"amount\":82.23,\"income\":false},{\"transactionDate\":\"31-07-2022 10:26:45\",\"description\":\"\",\"amount\":0.84," +
-                      "\"income\":false},{\"transactionDate\":\"01-08-2022  10:26:45\",\"description\":\"Terminal\",\"amount\":1500.24,\"income\":true},{\"transactionDate\":\"07-08-2022 10:26:45\",\"description\"" +
+                      "\"income\":false},{\"transactionDate\":\"01-08-2022 10:26:45\",\"description\":\"Terminal\",\"amount\":1500.24,\"income\":true},{\"transactionDate\":\"07-08-2022 10:26:45\",\"description\"" +
                       ":\"\",\"amount\":923.24,\"income\":false}]}";
         return json;
     }
