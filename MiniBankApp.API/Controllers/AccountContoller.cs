@@ -14,7 +14,7 @@ public class AccountContoller : Controller
         _accountService = accountService;
     }
 
-    [HttpGet("GetAccountInformation")]
+    [HttpGet]
     public IActionResult GetAccountInformation()
     {
         try
@@ -32,7 +32,7 @@ public class AccountContoller : Controller
         }
     }
     
-    [HttpGet("/GetAccountReportyByDate")]
+    [HttpGet("getReportyByDate")]
     public IActionResult GetAccountReportByDate(string fromDate, string toDate)
     {
         try

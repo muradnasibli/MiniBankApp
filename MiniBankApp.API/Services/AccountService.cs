@@ -22,7 +22,8 @@ public class AccountService: IAccountService
     /// <returns>AccountInformation</returns>
     public AccountInformation GetAccountInformation()
     {
-        var data = _fileService.ReadFileFromAppSettings("jsonData");
+        //var data = _fileService.ReadFileFromAppSettings("jsonData");
+        string data = _fileService.ReadJsonFromLocalVariable();
         return _convert.Deserialize(data);
     }
     
@@ -37,11 +38,18 @@ public class AccountService: IAccountService
         List<AccountStatement> statements = new List<AccountStatement>();
         var accountInformation = GetAccountInformation();
         
-        if (accountInformation != null)
+        if (accountInformation == null)
         {
-            statements = accountInformation.Statements;
+            return null;
         }
 
+        statements = accountInformation.Statements;
+            
+        if (statements == null)
+        {
+            return null;
+        }
+        
         var accountStatements = statements.FindAll(acc =>
             _convertDateTime.GetDateTime(fromDate) <= _convertDateTime.GetDateTime(acc.TransactionDate) &&
             _convertDateTime.GetDateTime(toDate) >= _convertDateTime.GetDateTime(acc.TransactionDate));
@@ -58,7 +66,13 @@ public class AccountService: IAccountService
     {
         if (statements == null)
         {
-            return new AccountReport();
+            return new AccountReport()
+            {
+                CurrentBalance = 0,
+                Income = 0,
+                Outcome = 0,
+                Statements = new List<AccountStatement>()
+            };
         }
 
         var income = statements.FindAll(x => x.Income).Sum(x => x.Amount);
